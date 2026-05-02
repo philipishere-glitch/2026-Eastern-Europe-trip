@@ -256,6 +256,16 @@
     .timeline li:last-child { border-bottom: 0; }
     .time { color: var(--accent); font-weight: 900; }
 
+    .place-link {
+      color: var(--accent);
+      font-weight: 850;
+      text-decoration: underline;
+      text-decoration-thickness: 1.5px;
+      text-underline-offset: 3px;
+    }
+
+    .place-link:hover { color: #3f281f; }
+
     .notes { margin: 0; padding-left: 18px; color: var(--muted); font-size: 14px; line-height: 1.5; }
 
     table { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 13px; border-radius: 14px; overflow: hidden; }
@@ -352,6 +362,51 @@
     };
 
     const fullRoute = ["Prague Airport", "Prague", "Mikulov", "Vienna", "Bled", "Ljubljana", "Postojna", "Piran", "Zagreb", "Budapest Airport", "Budapest"];
+
+    const exactMapLinks = {
+      "Prague Airport": "https://www.google.com/maps/search/?api=1&query=Prague%20Airport",
+      "The Grand Mark Prague": "https://www.google.com/maps/search/?api=1&query=The%20Grand%20Mark%20Prague",
+      "Old Town Square": "https://www.google.com/maps/search/?api=1&query=Old%20Town%20Square%20Prague",
+      "Astronomical Clock": "https://www.google.com/maps/search/?api=1&query=Prague%20Astronomical%20Clock",
+      "Charles Bridge": "https://www.google.com/maps/search/?api=1&query=Charles%20Bridge%20Prague",
+      "Malá Strana": "https://www.google.com/maps/search/?api=1&query=Mal%C3%A1%20Strana%20Prague",
+      "Prague Castle": "https://www.google.com/maps/search/?api=1&query=Prague%20Castle",
+      "Mikulov": "https://www.google.com/maps/search/?api=1&query=Mikulov%20Czechia",
+      "Andaz Vienna Am Belvedere": "https://www.google.com/maps/search/?api=1&query=Andaz%20Vienna%20Am%20Belvedere",
+      "Schönbrunn Palace": "https://www.google.com/maps/search/?api=1&query=Sch%C3%B6nbrunn%20Palace%20Vienna",
+      "Belvedere Palace": "https://www.google.com/maps/search/?api=1&query=Belvedere%20Palace%20Vienna",
+      "St. Stephen’s Cathedral": "https://www.google.com/maps/search/?api=1&query=St.%20Stephen%27s%20Cathedral%20Vienna",
+      "Graben": "https://www.google.com/maps/search/?api=1&query=Graben%20Vienna",
+      "Kärntner Straße": "https://www.google.com/maps/search/?api=1&query=K%C3%A4rntner%20Stra%C3%9Fe%20Vienna",
+      "Café Central": "https://www.google.com/maps/search/?api=1&query=Caf%C3%A9%20Central%20Vienna",
+      "Demel": "https://www.google.com/maps/search/?api=1&query=Demel%20Vienna",
+      "Lake Bled": "https://www.google.com/maps/search/?api=1&query=Lake%20Bled%20Slovenia",
+      "Bled Castle": "https://www.google.com/maps/search/?api=1&query=Bled%20Castle",
+      "Ljubljana": "https://www.google.com/maps/search/?api=1&query=Ljubljana%20Slovenia",
+      "Ljubljanica River": "https://www.google.com/maps/search/?api=1&query=Ljubljanica%20River%20Ljubljana",
+      "Triple Bridge": "https://www.google.com/maps/search/?api=1&query=Triple%20Bridge%20Ljubljana",
+      "Prešeren Square": "https://www.google.com/maps/search/?api=1&query=Pre%C5%A1eren%20Square%20Ljubljana",
+      "Postojna Cave": "https://www.google.com/maps/search/?api=1&query=Postojna%20Cave",
+      "Piran": "https://www.google.com/maps/search/?api=1&query=Piran%20Slovenia",
+      "Tartini Square": "https://www.google.com/maps/search/?api=1&query=Tartini%20Square%20Piran",
+      "Best Western Premier Hotel Astoria": "https://www.google.com/maps/search/?api=1&query=Best%20Western%20Premier%20Hotel%20Astoria%20Zagreb",
+      "Ban Jelačić Square": "https://www.google.com/maps/search/?api=1&query=Ban%20Jela%C4%8Di%C4%87%20Square%20Zagreb",
+      "Dolac Market": "https://www.google.com/maps/search/?api=1&query=Dolac%20Market%20Zagreb",
+      "Upper Town": "https://www.google.com/maps/search/?api=1&query=Upper%20Town%20Zagreb",
+      "St. Mark’s Church": "https://www.google.com/maps/search/?api=1&query=St.%20Mark%27s%20Church%20Zagreb",
+      "Budapest Airport": "https://www.google.com/maps/search/?api=1&query=Budapest%20Airport",
+      "Mystery Hotel Budapest": "https://www.google.com/maps/search/?api=1&query=Mystery%20Hotel%20Budapest",
+      "Hungarian State Opera House": "https://www.google.com/maps/search/?api=1&query=Hungarian%20State%20Opera%20House%20Budapest",
+      "Andrássy Avenue": "https://www.google.com/maps/search/?api=1&query=Andr%C3%A1ssy%20Avenue%20Budapest",
+      "Jewish Quarter": "https://www.google.com/maps/search/?api=1&query=Jewish%20Quarter%20Budapest",
+      "Buda Castle Hill": "https://www.google.com/maps/search/?api=1&query=Buda%20Castle%20Hill%20Budapest",
+      "Fisherman’s Bastion": "https://www.google.com/maps/search/?api=1&query=Fisherman%27s%20Bastion%20Budapest",
+      "Matthias Church": "https://www.google.com/maps/search/?api=1&query=Matthias%20Church%20Budapest",
+      "Parliament": "https://www.google.com/maps/search/?api=1&query=Hungarian%20Parliament%20Building%20Budapest",
+      "Danube promenade": "https://www.google.com/maps/search/?api=1&query=Danube%20Promenade%20Budapest",
+      "Széchenyi Thermal Baths": "https://www.google.com/maps/search/?api=1&query=Sz%C3%A9chenyi%20Thermal%20Bath%20Budapest",
+      "Gellért Baths": "https://www.google.com/maps/search/?api=1&query=Gell%C3%A9rt%20Baths%20Budapest"
+    };
 
     const days = [
       { date: "Thu May 7", country: "Czech Republic", title: "Arrive in Prague", route: ["Prague Airport", "Prague"], routeText: "Prague Airport → The Grand Mark Prague → Old Town → Charles Bridge", bullets: ["Arrive PRG 10:50", "Old Town + Charles Bridge", "$200 hotel credit for dinner"], meta: "Hotel: The Grand Mark Prague · Breakfast included next morning · Use $200 credit for dinner", timeline: [["10:50", "Land at Prague Airport"], ["11:30–12:15", "Immigration and baggage"], ["12:15–13:00", "Transfer to The Grand Mark Prague"], ["13:00–14:00", "Check in or luggage drop"], ["14:00–15:00", "Light lunch near Old Town"], ["15:00–16:30", "Old Town Square and Astronomical Clock"], ["16:30–17:30", "Walk to Charles Bridge"], ["17:30–18:30", "Malá Strana stroll and Prague Castle exterior views"], ["18:30–20:00", "Dinner using the $200 hotel credit"], ["21:30", "Early night before driving day"]], notes: ["Only one night in Prague, so keep sightseeing iconic and compact.", "Do not pick up the car until May 8."], meals: [["Breakfast", "Included on May 8"], ["Credit", "$200 for May 7 dinner"]] },
@@ -466,13 +521,29 @@
       });
     }
 
+    function escapeRegExp(string) {
+      return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    }
+
+    function linkExactPlaces(text) {
+      let linked = text;
+      const places = Object.keys(exactMapLinks).sort((a, b) => b.length - a.length);
+      places.forEach(place => {
+        const pattern = new RegExp(`(^|[^A-Za-zÀ-ž])(${escapeRegExp(place)})(?=$|[^A-Za-zÀ-ž])`, "g");
+        linked = linked.replace(pattern, (match, prefix, matchedPlace) => {
+          return `${prefix}<a class="place-link" href="${exactMapLinks[place]}" target="_blank" rel="noopener noreferrer">${matchedPlace}</a>`;
+        });
+      });
+      return linked;
+    }
+
     function renderDay(day) {
       drawRoute(day.route, { full: false });
       mapTitle.textContent = `${day.date}: ${day.title}`;
       mapText.textContent = day.routeText;
       detailTitle.textContent = `${day.date} — ${day.title}`;
       detailMeta.textContent = day.meta;
-      timeline.innerHTML = day.timeline.map(([t, text]) => `<li><span class="time">${t}</span><span>${text}</span></li>`).join("");
+      timeline.innerHTML = day.timeline.map(([t, text]) => `<li><span class="time">${t}</span><span>${linkExactPlaces(text)}</span></li>`).join("");
       notes.innerHTML = day.notes.map(note => `<li>${note}</li>`).join("");
       mealTable.innerHTML = `<thead><tr><th>Item</th><th>Details</th></tr></thead><tbody>${day.meals.map(([a,b]) => `<tr><td>${a}</td><td>${b}</td></tr>`).join("")}</tbody>`;
     }
